@@ -1,25 +1,34 @@
 window.Event = new Vue();
 
-Vue.component('coupon', {
+Vue.component('modal', {
   template: `
-    <input placeholder="Enter your coupon code" @blur="onCouponApplied">
+  <div class="modal is-active">
+    <div class="modal-background"></div>
+
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">
+          <slot name="header"> </slot>
+        </p>
+        <button class="delete" aria-label="close"></button>
+      </header>
+
+      <section class="modal-card-body">
+        <slot>
+          Default content here incase the user doesn't input anything.
+        </slot>
+      </section>
+
+      <footer class="modal-card-foot">
+        <slot name="footer"></slot>
+      </footer>
+    </div>
+  </div>
   `,
 
-  methods: {
-    onCouponApplied() {
-      Event.$emit('applied');
-    }
-  }
 });
 
 new Vue({
   el: '#root',
 
-  data: {
-    couponApplied: false
-  },
-
-  created(){
-    Event.$on('applied', () => alert('Handeling it!'));
-  }
 });
