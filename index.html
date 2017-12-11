@@ -3,15 +3,14 @@
   <head>
     <meta charset="UTF-8">
     <title>title</title>
+    <style type="text/css">
+      .is-loading { color: red; }
+    </style>
   </head>
   <body>
     <div id="root">
-      <ul>
-        <li v-for="name in names" v-text="name"></li>
-      </ul>
-
-      <input type="text" id="input" v-model="newName">
-      <button @click="addName">Add Name</button>
+      <!-- <button :title="title">Hover over me</button> -->
+      <button :class="{ 'is-loading' : isLoading }" @click='toggleClass'>Toggle Me</button>
     </div>
 
     <script src="https://unpkg.com/vue@2.5.9/dist/vue.js"></script>
@@ -19,17 +18,13 @@
     <script>
       var app = new Vue({
         el: '#root',
-        
         data: {
-          newName: '',
-          names: ['Victor', 'Caio', 'Julia']
+          isLoading: false
         },
 
         methods: {
-          addName() {
-            this.names.push(this.newName);
-
-            this.newName = '';
+          toggleClass() {
+            this.isLoading = true;
           }
         }
       });
