@@ -9,16 +9,26 @@
       <ul>
         <li v-for="name in names" v-text="name"></li>
       </ul>
+
+      <input type="text" id="input">
+      <button id="button">Add Name</button>
     </div>
 
     <script src="https://unpkg.com/vue@2.5.9/dist/vue.js"></script>
 
     <script>
-      new Vue({
+      var app = new Vue({
         el: '#root',
         data: {
           names: ['Victor', 'Caio', 'Julia']
         }
+      });
+
+      document.querySelector('#button').addEventListener('click', () => {
+        let name = document.querySelector('#input').value;
+
+        app.names.push(name);
+
       })
     </script>
 
